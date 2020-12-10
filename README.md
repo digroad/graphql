@@ -49,6 +49,20 @@ var respData ResponseStruct
 if err := client.Run(ctx, req, &respData); err != nil {
     log.Fatal(err)
 }
+
+// subscribe
+subCli, err := graphql.NewSubscriptionClient(ctx, req.Header, nil)
+if err != nil {
+    log.Fatal(err)
+}
+sub, err := subCli.Subscribe(graphql.NewRequest(`
+  subscription {
+    echoed {
+      message
+    }
+  }
+`))
+msg := <-sub.Channel
 ```
 
 ### File support via multipart form data
