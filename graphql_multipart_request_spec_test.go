@@ -181,7 +181,7 @@ func TestDoBadRequestErrMpRS(t *testing.T) {
 	req := NewRequest("query {}")
 	req.File("file", "filename.txt", f)
 	err := client.Run(ctx, req, &responseData)
-	is.Equal(err.Error(), "graphql: miscellaneous message as to why the the request was bad")
+	is.Equal(err.Error(), "graphql: server returned a non-200 status code: 400")
 }
 
 func TestDoNoResponseMpRS(t *testing.T) {

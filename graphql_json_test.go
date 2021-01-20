@@ -94,7 +94,7 @@ func TestDoJSONBadRequestErr(t *testing.T) {
 	var responseData map[string]interface{}
 	err := client.Run(ctx, &Request{q: "query {}"}, &responseData)
 	is.Equal(calls, 1) // calls
-	is.Equal(err.Error(), "graphql: miscellaneous message as to why the the request was bad; another error")
+	is.Equal(err.Error(), "graphql: server returned a non-200 status code: 400")
 }
 
 func TestDoJSONBadRequestErrDetails(t *testing.T) {
@@ -106,7 +106,7 @@ func TestDoJSONBadRequestErrDetails(t *testing.T) {
 		b, err := ioutil.ReadAll(r.Body)
 		is.NoErr(err)
 		is.Equal(string(b), `{"query":"query {}","variables":null}`+"\n")
-		w.WriteHeader(http.StatusBadRequest)
+		w.WriteHeader(http.StatusOK)
 		io.WriteString(w, `{
 			"errors": [{
 				"message": "Name for character with ID 1002 could not be fetched.",
