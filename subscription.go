@@ -10,7 +10,7 @@ import (
 	"sync"
 
 	"github.com/pkg/errors"
-	wsconn "github.com/shiwano/websocket-conn/v3"
+	wsconn "github.com/shiwano/websocket-conn/v4"
 )
 
 type (

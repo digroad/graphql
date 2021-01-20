@@ -9,7 +9,7 @@ import (
 	"time"
 
 	"github.com/matryer/is"
-	wsconn "github.com/shiwano/websocket-conn/v3"
+	wsconn "github.com/shiwano/websocket-conn/v4"
 )
 
 func TestSub(t *testing.T) {
